@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BrandForm = ({
   onSaveBrand,
@@ -69,9 +70,16 @@ const BrandForm = ({
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            Sign up
-          </button>
+          <div className="content-footer">
+            <div>
+              <button type="submit" className="btn btn-primary">
+                Sign up
+              </button>
+            </div>
+            <div className="content-footer-link">
+              <Link to="/">Login</Link>
+            </div>
+          </div>
         </div>
       </form>
     </div>

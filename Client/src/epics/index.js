@@ -8,12 +8,14 @@ import { map, flatMap } from "rxjs/operators";
 import { combineEpics, ofType } from "redux-observable";
 import {
   registerBrandSuccess,
-  registerCustomerSuccess
+  registerCustomerSuccess,
+  login
 } from "../store/actions/users";
 
 import {
   REGISTER_BRAND,
   REGISTER_CUSTOMER,
+  LOGIN
 } from "../store/actions/actionTypes";
 
 const registerBrandEpic = (action$) =>
@@ -50,4 +52,24 @@ const registerCustomerEpic = (action$) =>
     map((results) => registerCustomerSuccess(results.message))
   );
 
-export const rootEpic = combineEpics(registerBrandEpic, registerCustomerEpic);
+
+  const loginEpic = (action$) =>
+  action$.pipe(
+    ofType(LOGIN),
+    flatMap((action) =>
+      ajax({
+        url: "http://localhost:3001/api/users/login",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: action.payload,
+      })
+    ),
+    map((data) => data.response),
+    map((results) => registerCustomerSuccess(results.message))
+  );
+
+
+
+export const rootEpic = combineEpics(registerBrandEpic, registerCustomerEpic, loginEpic);

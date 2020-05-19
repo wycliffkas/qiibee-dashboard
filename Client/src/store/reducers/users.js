@@ -5,11 +5,6 @@ const initialState = {
 
 const users = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.REGISTER_BRAND:
-      return {
-        ...state,
-        message: "",
-      };
     case actionTypes.REGISTER_BRAND_SUCCESS:
       return {
         ...state,
@@ -20,17 +15,22 @@ const users = (state = initialState, action) => {
         ...state,
         message: action.payload,
       };
-    case actionTypes.REGISTER_CUSTOMER:
-      return {
-        ...state,
-        message: "",
-      };
     case actionTypes.REGISTER_CUSTOMER_SUCCESS:
       return {
         ...state,
         message: action.payload,
       };
     case actionTypes.REGISTER_CUSTOMER_FAIL:
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case actionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case actionTypes.LOGIN_FAIL:
       return {
         ...state,
         message: action.payload,
