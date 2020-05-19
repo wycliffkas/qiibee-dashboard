@@ -8,8 +8,9 @@ body {
 #space > div {
   width: 500px;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 11%;
   font-family: "Roboto", sans-serif;
+  border-radius: 5px;
 }
 #signup,
 #login {
@@ -163,4 +164,24 @@ label {
 .title {
   text-align: center;
   font-weight: bold;
+}
+
+.content-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content-footer a {
+  text-decoration: none;
+  margin-right: 30px;
+  color: #007bff;
+  font-size: 20px;
+}
+.content-footer a:hover {
+  color: #0069d9;
+}
+
+.content-footer-link {
+  margin-top: 10px;
 }

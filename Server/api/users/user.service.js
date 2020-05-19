@@ -22,9 +22,8 @@ module.exports = {
     });
   },
   createBrand: (data, callBack) => {
-    let sql =
-      "insert into brands(brandName, brandSymbol, loyaltyPoints, email) values (?, ?, ?, ?)";
-    let sql2 = "insert into users(email, password, type) values (?, ?, ?)";
+    let sql = `insert into brands(brandName, brandSymbol, loyaltyPoints, email) values (?, ?, ?, ?)`;
+    let sql2 = `insert into users(email, password, type) values (?, ?, ?)`;
     let insert = [
       data.brand_name,
       data.brand_symbol,
@@ -47,7 +46,6 @@ module.exports = {
     });
   },
   isEmailInUse: (email, callBack) => {
-    console.log("herexxx", email);
     pool.query(
       `SELECT COUNT(*) AS total FROM users WHERE email = ?`,
       [email],
@@ -58,6 +56,18 @@ module.exports = {
           // results = results[0].total > 0;
         }
         return callBack(null, results);
+      }
+    );
+  },
+  getUserByEmail: (email, callBack) => {
+    pool.query(
+      `select * from users where email = ?`,
+      [email],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results[0]);
       }
     );
   },

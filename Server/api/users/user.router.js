@@ -1,10 +1,11 @@
 const { check } = require("express-validator");
-const { createCustomer, createBrand } = require("./user.controller");
+const { createCustomer, createBrand, login } = require("./user.controller");
 const { isEmailInUse } = require("./user.service");
 const router = require("express").Router();
 
 router.post("/customer", createCustomer);
 router.post("/brand", createBrand);
+router.post("/login", login);
 
 // router.post(
 //   "/brand",

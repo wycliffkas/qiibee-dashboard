@@ -2,14 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { createEpicMiddleware } from "redux-observable";
+// import { createEpicMiddleware } from "redux-observable";
+import { BrowserRouter } from "react-router-dom";
+import thunk from "redux-thunk";
 import "./assets/css/style.css";
 import App from "./App";
 import users from "./store/reducers/users";
-import { rootEpic } from "./epics";
+// import { rootEpic } from "./epics";
 import * as serviceWorker from "./serviceWorker";
 
-const epicMiddleware = createEpicMiddleware();
+// const epicMiddleware = createEpicMiddleware();
 
 const rootReducer = combineReducers({
   users: users,
@@ -17,15 +19,17 @@ const rootReducer = combineReducers({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(epicMiddleware))
+  composeEnhancers(applyMiddleware(thunk))
 );
 
-epicMiddleware.run(rootEpic);
+// epicMiddleware.run(rootEpic);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
