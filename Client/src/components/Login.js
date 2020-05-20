@@ -57,9 +57,11 @@ class Login extends Component {
 
             <div className="content-footer">
               <div>
-                <button type="submit" className="btn btn-primary">
-                  Login
-                </button>
+                {/* <Link to="/dashboard" >
+                  <button onClick = {this.handleUserLogin} className="btn btn-primary"> */}
+                <button>Login</button>
+                {/* </button>
+                </Link> */}
               </div>
               <div className="content-footer-link">
                 <Link to="/signup">Sign up</Link>

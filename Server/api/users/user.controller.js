@@ -1,4 +1,9 @@
-const { createCustomer, createBrand, isEmailInUse, getUserByEmail } = require("./user.service");
+const {
+  createCustomer,
+  createBrand,
+  isEmailInUse,
+  getUserByEmail,
+} = require("./user.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
@@ -63,6 +68,8 @@ module.exports = {
         });
         return res.status(200).json({
           success: 1,
+          email: results.email,
+          userType: results.type,
           message: "login successfully",
           token: jsontoken,
         });
@@ -73,5 +80,5 @@ module.exports = {
         });
       }
     });
-  }
+  },
 };

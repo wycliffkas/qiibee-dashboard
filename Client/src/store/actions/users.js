@@ -1,6 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+// import {browserHistory} from "react-router";
 import { toast } from "react-toastify";
+import { history } from "../../utils/history";
 
 export const registerBrand = (userData) => {
   return (dispatch) => {
@@ -77,8 +79,14 @@ export const login = (userData) => {
         },
       })
       .then((response) => {
-        localStorage.setItem("token", response.data.token)
-        dispatch(loginSuccess(response.data.message));
+        localStorage.setItem("token", response.data.token);
+        dispatch(loginSuccess(response.data));
+        console.log("response.data---->", response.data.userType);
+
+        if (response.data.userType === "customer") {
+          // window.location('/customers')
+          history.push("/dashboard");
+        }
       })
       .catch((error) => {
         toast.error("Invalid email or password");
